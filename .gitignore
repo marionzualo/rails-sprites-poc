@@ -71,3 +71,6 @@ yarn-debug.log*
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Ignore Claude Code files
+.claude
+

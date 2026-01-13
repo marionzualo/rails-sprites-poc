@@ -1,0 +1,31 @@
+<div class="posts-header">
+  <h1>Blog Posts</h1>
+  <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+</div>
+
+<% if notice %>
+  <div class="notice"><%= notice %></div>
+<% end %>
+
+<div class="posts-list">
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <article class="post-card">
+        <h2><%= link_to post.title, post %></h2>
+        <div class="post-content">
+          <%= truncate(post.content, length: 200) %>
+        </div>
+        <div class="post-meta">
+          <span class="post-date"><%= post.created_at.strftime("%B %d, %Y") %></span>
+          <div class="post-actions">
+            <%= link_to "Read More", post, class: "btn-link" %>
+            <%= link_to "Edit", edit_post_path(post), class: "btn-link" %>
+            <%= button_to "Delete", post, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn-danger" %>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  <% else %>
+    <p class="no-posts">No posts yet. <%= link_to "Create your first post!", new_post_path %></p>
+  <% end %>
+</div>

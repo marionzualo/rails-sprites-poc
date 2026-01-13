@@ -1,0 +1,24 @@
+<% if notice %>
+  <div class="notice"><%= notice %></div>
+<% end %>
+
+<article class="post-detail">
+  <h1><%= @post.title %></h1>
+
+  <div class="post-meta">
+    <span class="post-date">Published on <%= @post.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+    <% if @post.updated_at != @post.created_at %>
+      <span class="post-date">Updated on <%= @post.updated_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+    <% end %>
+  </div>
+
+  <div class="post-content">
+    <%= simple_format(@post.content) %>
+  </div>
+
+  <div class="post-actions">
+    <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary" %>
+    <%= button_to "Delete", @post, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn-danger" %>
+    <%= link_to "Back to Posts", posts_path, class: "btn-link" %>
+  </div>
+</article>
